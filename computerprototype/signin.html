@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signing In</title>
+    <style>
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.signin-container {
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+}
+
+.loading-animation {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="signin-container">
+        <h2>Signing In</h2>
+        <div class="loading-animation"></div>
+    </div>
+
+    <script>
+        // Simulate a delay to demonstrate the loading animation
+        setTimeout(function() {
+            // Redirect back to the homepage or your desired destination after signing in
+            window.location.href = "profile.html";
+        }, 2000); // Adjust the duration as needed
+    </script>
+
+</body>
+</html>

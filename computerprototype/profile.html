@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="forums.html">Forums</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+                <div class="dropdown">
+                    <button class="profile-button">
+                        <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" id="editProfileDropdown">Edit Profile</a>
+                        <a href="#" id="resetPasswordDropdown">Reset Password</a>
+                        <a href="#" id="logoutDropdown">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div class="main-content"> <!-- Wrapper for main content -->
+        <main class="profile-container">
+            <section class="profile-header">
+                <img src="pp.jpeg" alt="Profile Picture" id="profilePic">
+                <div class="user-info">
+                    <h1 id="userName">User Name</h1>
+                    <h2 id="userBio">User's short bio...</h2>
+                    <p id="userAbout">About me content...</p>
+                </div>
+                <div id="editProfileForm" style="display:none;">
+                    <input type="text" id="editName" placeholder="Enter new name">
+                    <textarea id="editBio" placeholder="Enter new bio"></textarea>
+                    <textarea id="editAbout" placeholder="Enter About me"></textarea>
+                    <button id="saveProfileBtn">Save</button>
+                </div>
+            </section>
+
+            <div class="section-buttons">
+                <button class="button-primary" type="button" id="myPostsBtn" data-section="myPosts">My Posts</button>
+                <button class="button-primary" type="button" id="savedPostsBtn" data-section="savedPosts">Saved Posts</button>
+                <button class="button-primary" type="button" id="friendsBtn" data-section="friends">Friends</button>
+            </div>
+
+            <div class="content-sections">
+                <section id="myPosts" class="section-content" style="display:none;">
+                    <!-- Content for My Posts -->
+                </section>
+                
+                <section id="savedPosts" class="section-content" style="display:none;">
+                    <!-- Content for Saved Posts -->
+                </section>
+                
+                <section id="friends" class="section-content" style="display:none;">
+                    <!-- Content for Friends -->
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 ZoomIN. All rights reserved.</p>
+    </footer>
+
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>A password reset link has been sent to your email.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

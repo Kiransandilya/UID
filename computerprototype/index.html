@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoomIN</title>
+
+    <style>
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('background.jpg'); /* Replace 'your-background-image.jpg' with the path to your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background to make the text more readable */
+    padding: 10px 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+    font-size: 24px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+.center-nav a {
+    font-size: 32px;
+    text-align: center;
+}
+.right-nav {
+    display: flex;
+    align-items: center; 
+}
+
+.profile-icon {
+width: 30px;
+height: 30px;
+margin-left: 10px;
+transition: transform 0.1s ease-in-out; 
+}
+
+.profile-icon:hover {
+transform: scale(1.2); 
+cursor: pointer; 
+
+}
+
+main {
+    padding: 20px;
+}
+/* scroll down */
+.scroll-down-section {
+    text-align: center;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-down-icon {
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.scroll-down-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Earth animation */
+@keyframes rotate {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}
+
+.earth {
+width: 500px; /* Adjust the size of the Earth */
+height: 500px;
+background: url('earth2.png') center center no-repeat; 
+background-size: cover;
+animation: rotate 5s infinite linear; /* Adjust the animation duration as needed */
+margin: 0 auto;
+margin-top: 120px; /* Adjust the margin to center the Earth vertically */
+transform-origin: center center;
+}
+
+/* About US */
+.about-us-section {
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: #fff;
+    margin-top: 400px;
+}
+
+.about-us-writeup {
+    border: 2px solid #fff;
+    padding: 20px;
+    text-align: justify;
+}
+
+/* dropdown */
+
+.dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100px;
+            right: 0;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #555;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+
+    <nav>
+        <div class="left-nav">
+            <a href="index.html">Home</a>
+            <a href="blogs.html">Blogs</a>
+
+        </div>
+        <div class="center-nav">
+            <a href="aboutus.html">ZoomIN</a>
+        </div>
+        <div class="right-nav">
+            <a href="forums.html">Forums</a>
+            <a href="contact.html">Contact Us</a>
+            <div class="profile-container">
+                <div class="dropdown">
+                    <img src="profile.png" alt="Profile Icon" class="profile-icon">
+                    <div class="dropdown-content">
+                        <a href="profile.html" onclick="openSignInModal()">Sign In</a>
+                        <a href="index.html" onclick="signOut()">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </nav>
+    <div class="earth">
+    </div>
+
+    <script>
+        // JavaScript functions to handle the modal
+        function openSignInModal() {
+            document.getElementById('signInModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeSignInModal() {
+            document.getElementById('signInModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+<section class="about-us-section">
+    <div class="about-us-writeup">
+        <h2>About Us</h2>
+        <p>
+            Welcome to ZoomIN, your ultimate travel companion! Our passion is to inspire and guide you on your
+            journey to explore the world. Whether you seek adventure, cultural experiences, or relaxation,
+            ZoomIN is here to make your travel dreams a reality.
+        </p>
+        <!-- Add more content as needed -->
+    </div>
+</section>
+
+<script>
+    // JavaScript function to handle scroll down
+    function scrollToContent() {
+        const contentSection = document.querySelector('main');
+        contentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+<!-- dropdown -->
+
+<script>
+    // JavaScript functions to handle the modal and dropdown
+    function openSignInModal() {
+        document.getElementById('signInModal').style.display = 'view';
+        document.getElementById('overlay').style.display = 'close';
+        closeDropdown(); // Close the dropdown when modal is opened
+    }
+    function openSignInModal() {
+            window.location.href = "profile.html";
+        }
+
+    function closeSignInModal() {
+        document.getElementById('signInModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function toggleDropdown() {
+        const dropdown = document.getElementById('profileDropdown');
+        dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function closeDropdown() {
+        document.getElementById('profileDropdown').style.display = 'none';
+    }
+
+    function signOut() {
+        // Add sign-out logic here
+        alert('Signed Out');
+        closeDropdown();
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.profile-icon')) {
+            closeDropdown();
+        }
+    };
+</script>
+
+
+
+</body>
+</html>

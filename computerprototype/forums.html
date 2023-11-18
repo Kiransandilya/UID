@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .forum-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+        .forum-topic {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .forum-content {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="forums.html">Forums</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+                <div class="dropdown">
+                    <a href="profile.html" class="profile-button">
+                            <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#" id="logoutDropdown">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="forum-container">
+        <div class="forum-topic" id="hashtagTitle">
+            <!-- Hashtag title will be dynamically updated -->
+        </div>
+        <div class="forum-content" id="hashtagContent">
+            <!-- Hashtag content will be dynamically updated -->
+        </div>
+    </div>
+
+    <script>
+        // Get the hashtag from the URL query parameter
+        var hashtag = getParameterByName('hashtag');
+
+        // Update the page content based on the hashtag
+        document.getElementById('hashtagTitle').innerText = '#' + (hashtag || 'Trends');
+        document.getElementById('hashtagContent').innerText = getHashtagContent(hashtag);
+
+        // Function to retrieve a URL parameter by name
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Function to get content based on the hashtag
+        function getHashtagContent(hashtag) {
+            switch (hashtag) {
+                case 'whatsnewinboston':
+                    return 'Discover the vibrant and ever-changing scene in Boston with #Whatsnewinboston. Stay updated on the latest events, attractions, and cultural happenings in this historic city.';
+                case 'bestpizza':
+                    return 'Satisfy your pizza cravings with #bestpizza. Explore a curated list of the finest pizza places, indulge in mouthwatering flavors, and join discussions about what makes the perfect slice.';
+                case 'festivalseason':
+                    return 'Immerse yourself in the joy of celebrations with #festivalseason. Stay informed about upcoming festivals, cultural events, and seasonal festivities, creating memories that last a lifetime.';
+                default:
+                    return 'Welcome to ZoomIN Forums!';
+            }
+        }
+    </script>
+
+<footer class="footer">
+    <p>&copy; 2023 ZoomIN. All rights reserved.</p>
+</footer>
+</body>
+
+</html>

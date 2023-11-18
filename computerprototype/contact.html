@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ZoomIN</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+
+    
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            background: none;
+            box-shadow: none;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+            max-width: 100px;
+        }
+
+        .team-member h3 {
+            margin: 0;
+            color: white;
+            background: none;
+            padding: 0;
+        }
+
+        .team-member:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="/blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="forums.html">Forums</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+                <div class="dropdown">
+                    <a href="profile.html" class="profile-button">
+                            <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#" id="logoutDropdown">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <p>Welcome to ZoomIN! If you have any questions, suggestions, or just want to say hello, feel free to reach out to us.</p>
+        <p>Contact Us: team@zoomin.com</p>
+
+        <h2>Meet Our Team</h2>
+
+        <div class="team-member">
+            <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+            <h3>Abhishek</h3>
+        </div>
+
+        <div class="team-member">
+            <img src="aryan-profile.jpg" alt="Aryan's Profile Picture">
+            <h3>Aryan</h3>
+        </div>
+
+        <div class="team-member">
+            <img src="katt-profile.jpg" alt="Katt's Profile Picture">
+            <h3>Katt</h3>
+        </div>
+
+        <div class="team-member">
+            <img src="kiran-profile.jpg" alt="Kiran's Profile Picture">
+            <h3>Kiran</h3>
+        </div>
+
+        <div class="team-member">
+            <img src="nitish-profile.jpg" alt="Nitish's Profile Picture">
+            <h3>Nitish</h3>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2023 ZoomIN. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoomIN - Engage & Discover</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('background.jpg'); /* Replace with your image filename */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+        }
+        .header {
+    background-color: #333; /* Dark background for the header */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+
+.profile-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    color: #fff; 
+}
+
+.profile-header .user-info h1, .profile-header .user-info h2, .profile-header .user-info p {
+    color: #fff; /* Ensuring all text inside user-info is white */
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin-right: 1rem;
+}
+
+.header .profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.header .profile-button .header-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.profile-header .user-info h1 {
+    margin: 0;
+    color: #fff;
+}
+.section-content {
+    display: none;
+}
+
+.section-content.active {
+    display: block;
+}
+
+.section-buttons {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-buttons button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.section-buttons button:hover {
+    background-color: #0056b3;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #5d5858;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #333;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.button-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.footer {
+    margin-top: auto; 
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+        h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .section {
+            padding: 50px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .blogs h2, .chats h2, .forums h2 {
+            color: rgba(245, 183, 213, 0.664);
+            margin-bottom: 30px;
+        }
+
+        .blog-entry, .chat-list .chat-item {
+            background: white; /* This will be overridden for chat items */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-entry:hover, .chat-list .chat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-item {
+            background-image: url('frame.jpg'); /* Updated with the path to your uploaded image */
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            color: #333; /* Adjust text color as needed */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* You may need to adjust the padding to fit your content within the frame */
+            padding: 15px;
+            border-radius: 5px; /* You can remove this if the image itself has rounded corners */
+        }
+
+        .chat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .forum-box {
+            background: white; /* This will be overridden for chat items */
+            background-size: cover; /* Or adjust as needed */
+            background-repeat: no-repeat;
+            padding: 20px; /* Adjust padding as needed */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px; /* If you want rounded corners */
+        }
+
+    </style>
+
+
+<script>
+    function openChat(KIRAN) {
+        // Redirect to the chat page with the respective username
+        window.location.href = 'kiranchat.html';
+    }
+</script>
+
+<script>
+    function openForumPage() {
+        // Redirect to the forum page with the respective hashtag
+        window.location.href = 'Forums.html';
+    }
+</script>
+
+
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="forums.html">Forums</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+                <div class="dropdown">
+                    <a href="profile.html" class="profile-button">
+                            <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#" id="logoutDropdown">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="section blogs">
+        <div class="section blogs">
+            <h2>Blogs</h2>
+            <!-- Wrap the blog entry in an anchor tag linking to blogpage.html -->
+            <a href="blogpage.html" class="blog-entry"> 
+                <p>Trending #1</p>
+                <p>My Travel Diary</p>
+                <p>By KATT</p>
+            </a>
+            <a href="blogpage1.html" class="blog-entry"> 
+                <p>Trending #2</p>
+                <p>Surprise</p>
+                <p>By KIRAN SANDILYA</p>
+            </a>
+        </div>
+
+        <div class="section chats">
+            <h2>Chats</h2>
+            <div class="chat-item" onclick="openChat('KIRAN')">KIRAN</div>
+            <div class="chat-item" onclick="openChat('ARYAN')">ARYAN</div>
+            <div class="chat-item" onclick="openChat('NC')">NC</div>
+        </div>
+</div>
+
+    </div>
+
+    <div class="section forums">
+        <h2>Forums</h2>
+        <div class="forum-box" onclick="openForumPage('whatsnewinboston')">#Whatsnewinboston</div>
+        <div class="forum-box" onclick="openForumPage('bestpizza')">#bestpizza</div>
+        <div class="forum-box" onclick="openForumPage('festivalseason')">#festivalseason</div>
+        <div class="forum-box" onclick="openForumPage('Surprise')">#Surprise</div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2023 ZoomIN. All rights reserved.</p>
+    </footer>
+    
+
+</body>
+</html>

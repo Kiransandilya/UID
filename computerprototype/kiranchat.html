@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #042d59;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .chat-messages {
+            overflow-y: auto;
+            max-height: 300px;
+            padding: 10px;
+        }
+
+        .message {
+            background-color: #e6e6e6;
+            border-radius: 5px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .message.sender {
+            background-color: #42a5f5;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        .message input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .message input[type="button"] {
+            background-color: #042d59;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Say Hello!</h2>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="message">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <input type="button" value="Send" onclick="sendMessage()">
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var messageText = messageInput.value.trim();
+
+            if (messageText !== "") {
+                var chatMessages = document.getElementById("chatMessages");
+                var newMessage = document.createElement("div");
+                newMessage.classList.add("message", "sender");
+                newMessage.textContent = messageText;
+
+                chatMessages.appendChild(newMessage);
+
+                // Clear the input field after sending the message
+                messageInput.value = "";
+
+                // Optionally, you can implement logic to send the message to the server or other recipients.
+            }
+        }
+    </script>
+</body>
+
+</html>
