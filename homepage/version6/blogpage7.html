@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Name - ZoomIN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            animation: background-change 20s linear infinite;
+        }
+
+        .header {
+            background-color: #8f9aa7;
+            color: black;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .blog-title {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .blog-title h2 {
+            margin: 0;
+        }
+
+        .blog-author {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        
+
+        .side-bar {
+            position: fixed;
+            top: 50%;
+            right: 10px;
+            width: 50px;
+            transform: translateY(-50%);
+        }
+
+        .side-bar .button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .side-bar .button:hover {
+            background-color: #9f8c9d;
+            transform: translateX(-1cm);
+        }
+
+        .profile-options {
+            display: none;
+            position: center;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            flex-direction: column;
+            align-items: flex-start; 
+            width: max-content;
+        }
+
+        .profile-options a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-options a:hover {
+            background-color: #f4f4f4;
+        }
+
+        @keyframes background-change {
+            0% { background-image: url('Rome/R1.jpg'); }
+            20% { background-image: url('Rome/R2.jpg'); }
+            40% { background-image: url('Rome/R3.jpg'); }
+            60% { background-image: url('Rome/R4.jpg'); }
+            80% { background-image: url('Rome/R5.jpg'); }
+            100% { background-image: url('Rome/R1.jpg'); }
+        }
+
+        .love-icon {
+            display: inline-block;
+            margin-left: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .love-icon {
+            font-size: 2em;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .love-icon:hover {
+            transform: scale(1.1);
+        }
+
+
+        #likeCounter {
+            font-size: 1.5em;
+        }
+
+        .location-button-container {
+            margin-top: 10px; /* Spacing between the like counter and the button */
+            text-align: center; /* Center align the button */
+        }
+
+        /* Comment Section */
+
+.comments-icon {
+            font-size: 2em;
+            cursor: pointer;
+            margin-top: 10px;
+            color: #cf1dc6;
+        }
+
+        .comments-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            width: 80%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .comments-modal textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        .comments-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comment button {
+            background-color: #9f8c9d;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>ZoomIN</h1>
+    </div>
+
+    <div class="blog-container">
+        <div class="blog-title">
+            <h2>Exploring the Beauty of Rome! 🏛️🇮🇹</h2>
+            <p class="blog-author"><a href="javascript:void(0);" onclick="openProfile('katt')">KATT</a></p>
+            <div class="profile-options" id="options-katt">
+                <a href="#" onclick="viewProfile('katt')">View Profile</a>
+                <a href="kiranchat.html" target="_blank">Message</a>
+            </div>
+        </div>
+        <div class="blog-content">
+            <p>Ciao, fellow travelers! Join me on a mesmerizing journey through the ancient streets of Rome, where history comes alive, and every corner tells a tale of the glorious past.</p>
+
+            <p>Visit iconic landmarks such as the Colosseum, Roman Forum, and Vatican City. Indulge in authentic Italian cuisine at quaint trattorias, toss a coin into the Trevi Fountain, and immerse yourself in the timeless art at the Sistine Chapel.</p>
+
+            <p>Rome, with its architectural wonders and cultural richness, promises an unforgettable experience. Capture the spirit of this eternal city and share your Roman adventures with #RomeBeauty. Let the exploration unfold!</p>
+        </div>
+
+        <div class="love-icon-container">
+            <div class="love-icon" id="likeButton">❤️</div>
+            <div id="likeCounter">0</div>
+        </div>
+
+        <!-- Comments -->
+        <div class="comments-icon" onclick="openCommentsModal()">💬</div>
+        <div class="comments-modal" id="commentsModal">
+            <h3>Comments</h3>
+            <ul class="comments-list" id="commentsListModal"></ul>
+            <textarea id="commentInputModal" placeholder="Add a comment"></textarea>
+            <button onclick="addCommentModal()">Add Comment</button>
+            <button onclick="closeCommentsModal()">Close</button>
+            </div>
+
+            <script>
+                var likeCount = 0;
+                var likeCounterElement = document.getElementById('likeCounter');
+                var likeButton = document.getElementById('likeButton');
+        
+                function updateLikeCounter() {
+                    likeCounterElement.textContent = likeCount;
+                }
+        
+                likeButton.addEventListener('click', function () {
+                    likeCount++;
+                    updateLikeCounter();
+                });
+        
+                updateLikeCounter();
+                // Comments
+function openCommentsModal() {
+            const commentsModal = document.getElementById('commentsModal');
+            commentsModal.style.display = 'block';
+        }
+
+        function closeCommentsModal() {
+            const commentsModal = document.getElementById('commentsModal');
+            commentsModal.style.display = 'none';
+        }
+
+        function addCommentModal() {
+            const commentInputModal = document.getElementById('commentInputModal');
+            const commentsListModal = document.getElementById('commentsListModal');
+
+            const commentText = commentInputModal.value.trim();
+            if (commentText !== '') {
+                const commentElement = document.createElement('li');
+                commentElement.classList.add('comment');
+                commentElement.textContent = commentText;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function () {
+                    commentsListModal.removeChild(commentElement);
+                };
+
+                commentElement.appendChild(deleteButton);
+
+                commentsListModal.appendChild(commentElement);
+                commentInputModal.value = ''; // Clear the input after adding a comment
+            }
+        }
+        </script>
+    </div>
+
+ 
+
+    <div class="side-bar">
+        <a href="blogs.html" class="button">Back</a>
+        <a href="https://maps.app.goo.gl/RomeLocation" target="_blank" class="button">Location</a>
+    </div>
+
+    <script>
+        let isLiked = false;
+        let likeCount = Math.floor(Math.random() * 100);
+        const likeCounterElement = document.getElementById('likeCounter');
+        const likeButton = document.getElementById('likeButton');
+        const profileOptionsKatt = document.getElementById('options-katt');
+
+        function updateLikeCounter() {
+            likeCounterElement.textContent = 'Likes: ' + likeCount;
+        }
+
+        likeButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (isLiked) {
+                likeCount--;
+            } else {
+                likeCount++;
+            }
+            isLiked = !isLiked;
+            updateLikeCounter();
+        });
+
+        function openProfile(userId) {
+            if (userId.toLowerCase() === 'katt') {
+                profileOptionsKatt.style.display = profileOptionsKatt.style.display === 'none' ? 'flex' : 'none';
+            }
+        }
+
+        function viewProfile(userId) {
+            if (userId.toLowerCase() === 'katt') {
+                window.location.href = 'profile(Abhishek).html';
+            }
+        }
+
+        window.addEventListener('click', function (event) {
+            if (!event.target.matches('.blog-author a')) {
+                profileOptionsKatt.style.display = 'none';
+            }
+        });
+
+        updateLikeCounter();
+    </script>
+</body>
+
+</html>

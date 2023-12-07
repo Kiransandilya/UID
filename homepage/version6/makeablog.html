@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(244, 244, 244);
+            background-image: url('blog.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        
+    .header {
+        position: relative;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        padding: 10px;
+        text-align: center;
+        color: black;
+        font-display: black;
+    }
+
+    .back-button-container {
+        position: absolute;
+        top: 10px; /* Adjust the top position as needed */
+        right: 10px; /* Adjust the right position as needed */
+    }
+
+    #back-button {
+        background-color: #042d59;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .navbar .logo {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .navbar .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+        .blog-title {
+            text-align: center;
+            margin: 20px;
+        }
+        .blog-title input[type="text"] {
+            font-size: 28px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .story-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-image: url('frame.jpeg');
+            background-size: cover;
+            resize: vertical;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* #back-button {
+            background-color: #042d59;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: auto;
+        } */
+
+        .control-item input, .control-item select, .control-item button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+        .side-bar {
+            position: fixed;
+            top: 50%;
+            right: 10px;
+            width: 60px;
+            transform: translateY(-50%);
+        }
+        .side-bar .button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .side-bar .button:hover {
+            background-color: #eaeaea;
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown {
+            display: none;
+            position: fixed;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        .dropdown select {
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .message {
+            display: none;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f4f4f4;
+            color: green;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .message.error {
+            color: #dc3545;
+        }
+        .blog-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #947ea1; /* A purple color similar to the window background in the image */
+            color: #f8f0fb; /* A light pink color for the text, picked from the image */
+            border: 4px solid #dec0f1; /* A border color picked from the lighter parts of the image */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive; /* Assuming you have this font or a similar one available */
+        }
+        /* Notification Styles */
+        .notification-popup {
+            position: fixed;
+            bottom: -100px; /* Start off screen */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+            z-index: 1000;
+        }
+
+        .notification-popup.show {
+            bottom: 20px; /* Slide in */
+        }
+
+        .notification-popup.error {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+
+/* ... (Other styles remain unchanged) ... */
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="back-button-container">
+            <button id="back-button" onclick="goBack()">Back</button>
+        </div>
+        <h1>ZoomIN</h1>
+    </div>
+
+    <div class="blog-title">
+        <input type="text" id="titleInput" placeholder="Your Title!" onchange="updateTitle()">
+        <h2 id="storyTitle">My Story</h2>
+    </div>
+
+    <div class="story-container" id="storyContainer">
+        <textarea id="storyArea" placeholder="Start writing your story here..."></textarea>
+        <input type="url" id="mapLink" placeholder="Enter Google Maps link here..." class="control-item">
+    </div>
+
+    <div class="side-bar">
+        <button class="button" onclick="toggleDropdown('fontDropdown')">Font</button>
+        <button class="button" onclick="toggleDropdown('colorDropdown')">Color</button>
+        <button class="button" onclick="shareStory()">Share</button>
+    </div>
+
+    <div id="fontDropdown" class="dropdown">
+        <select id="fontSelection" onchange="changeFontStyle()">
+            <option value="'Roboto', sans-serif">Roboto</option>
+            <option value="'Merriweather', serif">Merriweather</option>
+        </select>
+    </div>
+
+    <div id="colorDropdown" class="dropdown">
+        <select id="containerColor" onchange="changeContainerColor()">
+            <option value="#fff">White</option>
+            <option value="#f8f8f8">Light Grey</option>
+            <option value="#ffc0cb">Pink</option>
+            <option value="#add8e6">Light Blue</option>
+            <option value="#90ee90">Light Green</option>
+        </select>
+    </div>
+    <div id="shareMessage" class="notification-popup">Your blog has been shared!</div>
+    <div id="errorMessage" class="notification-popup error">Error: Blog content cannot be empty!</div>
+    
+
+    <script>
+        function changeFontStyle() {
+            var font = document.getElementById('fontSelection').value;
+            document.getElementById('storyContainer').style.fontFamily = font;
+        }
+
+        function changeContainerColor() {
+            var color = document.getElementById('containerColor').value;
+            document.getElementById('storyContainer').style.backgroundColor = color;
+        }
+
+        function toggleDropdown(dropdownId) {
+            var dropdowns = document.getElementsByClassName('dropdown');
+            for (var i = 0; i < dropdowns.length; i++) {
+                var dropdown = dropdowns[i];
+                if (dropdown.id !== dropdownId) {
+                    dropdown.style.display = 'none';
+                }
+            }
+            var selectedDropdown = document.getElementById(dropdownId);
+            selectedDropdown.style.display = selectedDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function shareStory() {
+            var storyContent = document.getElementById('storyArea').value;
+            var shareMessage = document.getElementById('shareMessage');
+            var errorMessage = document.getElementById('errorMessage');
+
+            if (storyContent.trim() === '') {
+                errorMessage.style.display = 'block';
+                setTimeout(function() { errorMessage.style.display = 'none'; }, 3000);
+            } else {
+                shareMessage.style.display = 'block';
+                setTimeout(function() { shareMessage.style.display = 'none'; }, 3000);
+            }
+        }
+
+        function updateTitle() {
+            var title = document.getElementById('titleInput').value;
+            document.getElementById('storyTitle').textContent = title || 'My Story';
+        }
+
+        function toggleDropdown(dropdownId) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            for (var i = 0; i < dropdowns.length; i++) {
+                var dropdown = dropdowns[i];
+                if (dropdown.id !== dropdownId) {
+                    dropdown.style.display = 'none';
+                }
+            }
+            var selectedDropdown = document.getElementById(dropdownId);
+            selectedDropdown.style.display = selectedDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        function shareStory() {
+            var storyContent = document.getElementById('storyArea').value;
+            var shareMessage = document.getElementById('shareMessage');
+            var errorMessage = document.getElementById('errorMessage');
+
+            if (storyContent.trim() === '') {
+                // Show error message
+                errorMessage.classList.add('show');
+                setTimeout(function() { errorMessage.classList.remove('show'); }, 3000);
+            } else {
+                // Show success message
+                shareMessage.classList.add('show');
+                setTimeout(function() { shareMessage.classList.remove('show'); 
+                window.location.href = 'blogs.html';
+            }, 1500);
+            }
+        }
+
+        function goBack() {
+            window.location.href = "blogs.html";
+        }
+
+    </script>
+</body>
+</html>

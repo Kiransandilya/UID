@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url(travel.jpeg);
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.8);
+            /* background-color: #999191; */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            padding: 2px;
+            text-align: center;
+            color: black;
+            font-display: black;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            flex: 1;
+            background:rgba(255, 255, 255, 0.551);
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .sidebar .chat-name {
+            background: #f9f6f6;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .chat-name:hover, .sidebar .chat-name:hover {
+            background-color: #f0f0f0;
+            max-height: 500px;
+        }
+
+        .chat-options {
+            overflow: hidden;
+            height: 0; /* Start with 0 height */
+            transition: height 0.3s ease; /* Smooth transition for height */
+            padding: 0 10px; /* Initial padding */
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .chat-options a {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px 0; /* Padding for links */
+        }
+
+
+        .content {
+            flex: 3;
+            background:rgba(255, 255, 255, 0.0);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog {
+            margin-bottom: 20px;
+        }
+
+        .blog-header {
+            background: rgba(91, 126, 119, 0.684);
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .blog-preview {
+            display: block;
+            overflow: hidden;
+            height: 0;
+            transition: height 0.3s ease;
+            padding: 0 10px;
+            background: #f4f4f4;
+            border-top: 1px solid #eee;
+        }
+        .create-blog-box {
+            background-color: #e9eff1; /* Light background for distinction */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .create-blog-box h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .create-blog-button {
+            background-color: #4CAF50; /* Green button for action */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="dropdown">
+                <a href="profile.html" class="profile-button">
+                    <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                </a>
+                <div class="dropdown-content">
+                    <a href="#" id="logoutDropdown">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Bloggers</h3>
+            <div class="chat-name" onclick="toggleChatOptions('ABHI')">ABHI</div>
+            <div class="chat-options" id="ABHI-options">
+                <a href="ABHIchat.html">Chat</a>
+                <a href="ABHIprofile.html">View Profile</a>
+            </div>
+
+            <div class="chat-name" onclick="toggleChatOptions('ARYAN')">ARYAN</div>
+            <div class="chat-options" id="ARYAN-options">
+                <a href="ARYANchat.html">Chat</a>
+                <a href="ARYANprofile.html">View Profile</a>
+            </div>
+
+            <div class="chat-name" onclick="toggleChatOptions('NC')">NC</div>
+            <div class="chat-options" id="NC-options">
+                <a href="NCchat.html">Chat</a>
+                <a href="NCprofile.html">View Profile</a>
+            </div>
+
+            <div class="chat-name" onclick="toggleChatOptions('KATT')">KATT</div>
+            <div class="chat-options" id="katt-options">
+                <a href="KATTchat.html">Chat</a>
+                <a href="KATTprofile.html">View Profile</a>
+            </div>
+
+            <div class="chat-name" onclick="toggleChatOptions('KIRAN')">KIRAN</div>
+            <div class="chat-options" id="KIRAN-options">
+                <a href="kiranchat.html">Chat</a>
+                <a href="ABHIprofile.html">View Profile</a>
+            </div>
+        
+
+            <div class="create-blog-box">
+                <h3>Create Your Blog</h3>
+                <p>Share your stories and experiences.</p>
+                <a href="makeablog.html" class="create-blog-button">Start Writing</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <!-- Existing blogs -->
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog1')">
+                    Discover Boston's Best-Kept Secret: Our Local Flea Market Awaits! 🌟
+                </header>
+                <div class="blog-preview" id="blog1-preview">
+                    <p>Hey Bostonians and visitors! Get ready to explore the charming and vibrant flea market right here in our city. Every Friday, from 10 AM to...</p>
+                    <a href="blogpage.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog2')">
+                    Suprise 
+                </header>
+                <div class="blog-preview" id="blog2-preview">
+                    <p>During my first year at college in Boston, I stumbled upon a pizza shop that was as eccentric as it was delicious. It was tucked away in a narrow alley, with a neon sign that flickered...</p>
+                    <a href="blogpage1.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog3')">
+                    ⛷️🏔️ Discover the Thrills and Chills at Switzerland's Newest Ski Resort!
+                </header>
+                <div class="blog-preview" id="blog3-preview">
+                    <p>Hey snow lovers! I'm buzzing with excitement to tell you about our new ski resort in the Swiss mountains, where every morning greets you with breathtaking...</p>
+                    <a href="blogpage2.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog4')">
+                    Experience the Charm of Barcelona: Unveiling Hidden Delights! 🌍✨
+                </header>
+                <div class="blog-preview" id="blog4-preview">
+                    <p>Hola amigos! Are you ready to embark on a journey through the enchanting streets of Barcelona? Join me a...</p>
+                    <a href="blogpage3.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog5')">
+                    Discover the Magic of Abu Dhabi's Oasis! 🏜️🌴
+                </header>
+                <div class="blog-preview" id="blog5-preview">
+                    <p>Greetings, fellow travelers! Join me on an extraordinary journey to Abu Dhabi, where amidst the vast dese...</p>
+                    <a href="blogpage4.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog6')">
+                    Exploring the Charm of Paris! 🗼🇫🇷
+                </header>
+                <div class="blog-preview" id="blog6-preview">
+                    <p>Bonjour, fellow adventurers! Join me on a magical journey to the enchanting city of Paris, where every street tel...</p>
+                    <a href="blogpage5.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog7')">
+                    Discover the Magic of London! 🏰🇬🇧
+                </header>
+                <div class="blog-preview" id="blog7-preview">
+                    <p>Hello, fellow explorers! Join me on an exciting journey to the heart of London, where history meets modernit...</p>
+                    <a href="blogpage6.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog8')">
+                    Exploring the Beauty of Rome! 🏛️🇮🇹
+                </header>
+                <div class="blog-preview" id="blog8-preview">
+                    <p>Ciao, fellow travelers! Join me on a mesmerizing journey through the ancient streets of Rome, where history com...</p>
+                    <a href="blogpage7.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog9')">
+                    Enchanting Kashmir: A Paradise on Earth! 🏞️🏔️
+                </header>
+                <div class="blog-preview" id="blog9-preview">
+                    <p>Namaste, dear readers! Embark on a soul-soothing journey to the breathtaking landscapes of Kashmir, a pla...</p>
+                    <a href="blogpage8.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+            <section class="blog">
+                <header class="blog-header" onclick="toggleBlogPreview('blog10')">
+                    Discovering the Magic of Tulum! 🏖️🌴
+                </header>
+                <div class="blog-preview" id="blog10-preview">
+                    <p>Hola, fellow adventurers! Join me on a tropical escape to the mesmerizing town of Tulum, where pristine beaches meet ancient ruins, creating a perfect harmony of nature a...</p>
+                    <a href="blogpage9.html" class="read-more">Read More</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+   
+    <script>
+        function toggleBlogPreview(blogId) {
+            var preview = document.getElementById(blogId + '-preview');
+            if (preview.style.height && preview.style.height !== "0px") {
+                preview.style.height = '0px'; // Close the preview
+            } else {
+                var scrollHeight = preview.scrollHeight; // Get the natural height
+                preview.style.height = scrollHeight + 'px'; // Open the preview
+            }
+        }
+
+        function toggleChatOptions(chatName) {
+            var options = document.getElementById(chatName + '-options');
+            if (options.style.height && options.style.height !== "0px") {
+                options.style.height = '0px'; // Close the options
+                options.style.padding = '0 10px'; // Reset padding
+            } else {
+                var scrollHeight = options.scrollHeight; // Get the natural height
+                options.style.height = scrollHeight + 'px'; // Open the options
+                options.style.padding = '10px'; // Apply padding
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('venice.jpeg'); /* Replace with your image path */
+            background-size: cover;
+            color: #333;
+        }
+
+        .page-container {
+            display: flex;
+        }
+
+        #chat-container {
+            display: flex;
+            flex: 3;
+            flex-direction: column;
+            width: 70vw;
+            height: 100vh;
+            margin-left: auto;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow-x: hidden;
+            margin-left: auto;
+        }
+
+        .sidebar {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar .chat-name {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .chat-name:hover, .sidebar .chat-name:hover {
+            background-color: #f0f0f0;
+            max-height: 500px;
+        }
+
+        .chat-options {
+            overflow: hidden;
+            height: 0; 
+            transition: height 0.3s ease; 
+            padding: 0 10px; 
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .chat-options a {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px 0; 
+        }
+
+        
+
+        #header {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            color: #042d59;
+            padding: 2px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #back-button {
+            background-color: #042d59;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #chat-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .message {
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: black;
+        }
+
+        .message.sender {
+            background-color: #8d5d95;
+            color: white;
+            align-self: flex-end;
+        }
+
+        #message-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        }
+
+        #message-input input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        #message-input input[type="button"] {
+            background-color: #7c6190;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+
+        <div class="container">
+            <aside class="sidebar">
+                <h3>Bloggers</h3>
+                <div class="chat-name" onclick="toggleChatOptions('ABHI')">ABHI</div>
+                <div class="chat-options" id="ABHI-options">
+                    <a href="ABHIchat.html">Chat</a>
+                    <a href="ABHIprofile.html">View Profile</a>
+                </div>
+    
+                <div class="chat-name" onclick="toggleChatOptions('ARYAN')">ARYAN</div>
+                <div class="chat-options" id="ARYAN-options">
+                    <a href="ARYANchat.html">Chat</a>
+                    <a href="ARYANprofile.html">View Profile</a>
+                </div>
+    
+                <div class="chat-name" onclick="toggleChatOptions('NC')">NC</div>
+                <div class="chat-options" id="NC-options">
+                    <a href="NCchat.html">Chat</a>
+                    <a href="NCprofile.html">View Profile</a>
+                </div>
+    
+                <div class="chat-name" onclick="toggleChatOptions('KATT')">KATT</div>
+                <div class="chat-options" id="katt-options">
+                    <a href="KATTchat.html">Chat</a>
+                    <a href="KATTprofile.html">View Profile</a>
+                </div>
+    
+                <div class="chat-name" onclick="toggleChatOptions('KIRAN')">KIRAN</div>
+                <div class="chat-options" id="KIRAN-options">
+                    <a href="kiranchat.html">Chat</a>
+                    <a href="ABHIprofile.html">View Profile</a>
+                </div>
+            </aside>
+        </div>
+        
+        <div id="chat-container">
+            <div id="header">
+                <div>
+                    <img src="pp.jpeg" alt="Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                    <span id="ABHI">Abhishek</span>
+                </div>
+                <button id="back-button" onclick="goBack()">Back</button>
+            </div>
+            <div id="chat-content">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div id="message-input">
+                <input type="text" id="messageInput" placeholder="Type your message..." onkeypress="checkEnter(event)">
+                <input type="button" value="Send" onclick="sendMessage()">
+            </div>
+        </div>
+    
+    
+    </div>
+    <script>
+        function sendMessage() {
+    var messageInput = document.getElementById("messageInput");
+    var messageText = messageInput.value.trim().toLowerCase();
+
+    if (messageText !== "") {
+        var chatContent = document.getElementById("chat-content");
+
+        // User's message block
+        var userMessage = document.createElement("div");
+        userMessage.classList.add("message", "sender");
+        userMessage.textContent = "You: " + messageText;
+        chatContent.appendChild(userMessage);
+
+        // Autonomous reply block
+        var autonomousReply = document.createElement("div");
+        autonomousReply.classList.add("message");
+
+        var replyText = "";
+        if (messageText === "hey" || messageText === "hi" || messageText === "hey there") {
+            replyText = "Hello!";
+        }
+        else if (messageText === "how are you" || messageText ==="how are you?"){
+            replyText = "I'm good! Thanks for contacting Abhishek, they will be with you shortly.";
+        }
+
+
+        autonomousReply.innerHTML = "<span class='username'>Abhishek:</span> " + replyText; // Updated 'Username' to 'Kiran'
+        chatContent.appendChild(autonomousReply);
+
+        messageInput.value = "";
+    }
+}
+
+            
+        
+
+        function goBack() {
+            window.location.href = "blogs.html";
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function toggleChatOptions(chatName) {
+            var options = document.getElementById(chatName + '-options');
+            if (options.style.height && options.style.height !== "0px") {
+                options.style.height = '0px'; // Close the options
+                options.style.padding = '0 10px'; // Reset padding
+            } else {
+                var scrollHeight = options.scrollHeight; // Get the natural height
+                options.style.height = scrollHeight + 'px'; // Open the options
+                options.style.padding = '10px'; // Apply padding
+            }
+        }
+    </script>
+</body>
+
+</html>

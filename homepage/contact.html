@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ZoomIN</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            background: none;
+            box-shadow: none;
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+            max-width: 100px;
+        }
+
+        .team-member h3 {
+            margin: 0;
+            color: white;
+            background: none;
+            padding: 0;
+        }
+
+        .team-options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .team-options a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .team-member:hover {
+            transform: scale(1.1);
+        }
+
+        .feedback-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .feedback-box {
+            flex: 1;
+            margin: 0 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: white;
+            border-radius: 10px;
+            color: rgb(128, 118, 118);
+            overflow-y: auto;
+        }
+
+/* Style for the buttons and input fields */
+.popup-form input, .popup-form button, .popup-form textarea {
+            background: rgba(48, 42, 42, 0.5); /* Set the background to semi-transparent white */
+            color: rgb(255, 253, 253); /* Set the text color to black */
+            font-family: Arial;
+            font-size: 12px;
+            width: 100%; /* Set the width to 100% */
+        }
+
+        /* Style for the popup form */
+        .popup-form {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5); /* Set the background to semi-transparent black */
+            color: black; /* Set the text color to black */
+            padding: 20px;
+            border-radius: 10px;
+            font-family: Arial;
+            font-size: 12px;
+            width: 50%; /* Set the width to 50% */
+            max-width: 800px; /* Set the maximum width to 800px */
+        }
+
+        #popup-background {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .share-button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px; /* Add a top margin */
+        }
+
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="forums.html">Forums</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="dropdown">
+                <a href="profile.html" class="profile-button">
+                    <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                </a>
+                <div class="dropdown-content">
+                    <a href="#" id="logoutDropdown">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <p>Welcome to ZoomIN! Share your blog or provide feedback.</p>
+        <p>Have any questions? Reach out to any of our team members.</p>
+
+        <h2>Meet Our Team</h2>
+
+        <div class="team-members-container">
+            <div class="team-member" id="abhishek">
+                <a href="javascript:void(0);" onclick="showOptions('abhishek')" data-chat="ABHISHEK">
+                    <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+                    <h3>Abhishek</h3>
+                </a>
+                <div class="team-options" id="options-abhishek" style="display:none; margin-top: 10px;">
+                    <a href="profile(Abhishek).html" target="_blank">View profile</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0);" onclick="openChat('Kiran')">Message</a>
+                </div>
+            </div>
+            
+            <div class="team-member" id="aryan">
+                <a href="javascript:void(0);" onclick="showOptions('aryan')" data-chat="ARYAN">
+                    <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+                    <h3>Aryan</h3>
+                </a>
+                <div class="team-options" id="options-aryan" style="display:none; margin-top: 10px;">
+                    <a href="profile(Abhishek).html" target="_blank">View profile</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0);" onclick="openChat('Kiran')">Message</a>
+                </div>
+            </div>
+
+            <div class="team-member" id="katt">
+                <a href="javascript:void(0);" onclick="showOptions('katt')" data-chat="KATT">
+                    <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+                    <h3>Katt</h3>
+                </a>
+                <div class="team-options" id="options-katt" style="display:none; margin-top: 10px;">
+                    <a href="profile(Abhishek).html" target="_blank">View profile</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0);" onclick="openChat('Kiran')">Message</a>
+                </div>
+            </div>
+
+            <div class="team-member" id="kiran">
+                <a href="javascript:void(0);" onclick="showOptions('kiran')" data-chat="KIRAN">
+                    <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+                    <h3>Kiran</h3>
+                </a>
+                <div class="team-options" id="options-kiran" style="display:none; margin-top: 10px;">
+                    <a href="profile(Abhishek).html" target="_blank">View profile</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0);" onclick="openChat('Kiran')">Message</a>
+                </div>
+            </div>
+
+            <div class="team-member" id="nitish">
+                <a href="javascript:void(0);" onclick="showOptions('nitish')" data-chat="NITISH">
+                    <img src="abhishek-profile.jpg" alt="Abhishek's Profile Picture">
+                    <h3>Nitish</h3>
+                </a>
+                <div class="team-options" id="options-nitish" style="display:none; margin-top: 10px;">
+                    <a href="profile(Abhishek).html" target="_blank">View profile</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0);" onclick="openChat('Kiran')">Message</a>
+                </div>
+            </div>
+
+            
+
+        </div>
+        <button class="share-button" onclick="openForm('blog')">Share a Blog</button>
+        <button class="share-button" onclick="openForm('feedback')">Write a Feedback</button>
+    
+        <div id="blog-form" class="popup-form">
+            <label for="blog-name">Blog Name:</label><br>
+            <input type="text" id="blog-name" name="blog-name"><br>
+            <label for="blog-location">Blog Location with Time-stamp Details:</label><br>
+            <input type="text" id="blog-location" name="blog-location"><br>
+            <label for="blog-description">Describe Your Blog:</label><br>
+            <textarea id="blog-description" name="blog-description"></textarea><br>
+            <label for="pics-link">Share Your Pics Link:</label><br>
+            <input type="text" id="pics-link" name="pics-link"><br>
+            <label for="contact-details">Contact Details:</label><br>
+            <input type="text" id="contact-details" name="contact-details"><br>
+            <button class="share-button" onclick="shareContent('blog')">Share</button>
+        </div>
+    
+        <div id="feedback-form" class="popup-form">
+            <label for="feedback-detail">Feedback Detail:</label><br>
+            <input type="text" id="feedback-detail" name="feedback-detail"><br>
+            <label for="your-feedback">Your Feedback:</label><br>
+            <textarea id="your-feedback" name="your-feedback"></textarea><br>
+            <label for="contact-details">Contact Details:</label><br>
+            <input type="text" id="contact-details" name="contact-details"><br>
+            <button class="share-button" onclick="shareContent('feedback')">Share</button>
+        </div>
+    
+        <div id="popup-background" onclick="closeForm()"></div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2023 ZoomIN. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function openForm(type) {
+            document.getElementById(type + '-form').style.display = 'block';
+            document.getElementById('popup-background').style.display = 'block';
+        }
+
+        function closeForm() {
+            document.getElementById('blog-form').style.display = 'none';
+            document.getElementById('feedback-form').style.display = 'none';
+            document.getElementById('popup-background').style.display = 'none';
+        }
+
+        function shareContent(type) {
+            var button = event.target;
+            button.innerHTML = 'Sent!';
+            setTimeout(function() {
+                button.innerHTML = 'Share';
+                closeForm();
+                location.reload();
+            }, 3000);
+        }
+
+    </script>
+</body>
+
+</html>

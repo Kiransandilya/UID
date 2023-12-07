@@ -1,0 +1,916 @@
+
+
+User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoomIN</title>
+
+    <style>
+        html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Viewport height */
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: repeat; 
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.8);
+    /*box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    padding: 10px;
+    text-align: center;
+    color: black;
+    font-display: black;
+    margin-top: 0; /* Remove top margin */
+    position: absolute; /* Positioning the header absolutely */
+    top: 0; /* Align the top of the header with the top of the page */
+    width: 100%; /* Ensure the header stretches across the full width */
+    z-index: 10; /* Ensure the header stays on top of other elements */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* This will push the nav-right to the end */
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #100f0f; /* Light color for the logo */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar a {
+    padding: 10px 15px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff; /* Light color for the text */
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color:rgba(255, 255, 255, 0.6); /* Background color on hover */
+}
+
+.navbar .nav-left a, .navbar .nav-right a {
+    color: #060606; /* Adjusted color for visibility */
+}
+
+.navbar .nav-left a:hover, .navbar .nav-right a:hover {
+    background-color:rgba(255, 255, 255, 0.3); /* Background color on hover */
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    color: #fff; 
+}
+
+.profile-header .user-info h1, .profile-header .user-info h2, .profile-header .user-info p {
+    color: #fff; /* Ensuring all text inside user-info is white */
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin-right: 1rem;
+}
+
+.header .profile-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.header .profile-button .header-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.profile-header .user-info h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.section-content {
+    display: none;
+}
+
+.section-content.active {
+    display: block;
+}
+
+.section-buttons {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-buttons button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.section-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    margin-top: auto; 
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #5d5858;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #333;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.button-primary {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    transform: translate(-50%, -50%);
+    position: relative;
+    top: -50%;
+    left: -50%;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-left, .nav-right {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0; 
+    }
+
+    .navbar .nav-left a, .navbar .nav-right a {
+        margin-top: 10px;
+    }
+
+    .navbar .logo {
+        position: static;
+        transform: none;
+        margin-bottom: 10px;
+    }
+
+    .profile-container {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-header img {
+        margin-bottom: 1rem;
+    }
+
+    .profile-button {
+        background: none; /* Removes any background */
+        border: none; /* Removes any border */
+        outline: none; /* Removes outline on focus */
+        padding: 0; /* Removes any padding */
+        margin: 0; /* Removes any margin */
+        cursor: pointer; /* Changes cursor to pointer */
+    }
+    
+    .profile-button:focus {
+        outline: none; /* Removes outline when focused */
+    }
+    
+    .profile-button img {
+        border-radius: 20px; /* Keeps the circular shape */
+        transition: none; /* Removes any transition effects */
+    }
+    
+    /* Remove hover effect */
+    .profile-button:hover img {
+        transform: none;
+    }
+    
+}
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+   
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            flex: 1;
+            background:rgba(255, 255, 255, 0.551);
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .sidebar .chat-name {
+            background: #f9f6f6;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar .chat-name:hover, .sidebar .chat-name:hover {
+            background-color: #f0f0f0;
+            max-height: 500px;
+        }
+
+        .chat-options {
+            overflow: hidden;
+            height: 0; /* Start with 0 height */
+            transition: height 0.3s ease; /* Smooth transition for height */
+            padding: 0 10px; /* Initial padding */
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .chat-options a {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px 0; /* Padding for links */
+        }
+
+
+        .content {
+            flex: 3;
+            background:rgba(255, 255, 255, 0.0);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+
+
+        
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+        #myVideo {
+        position: fixed;
+         right: 0;
+         bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+         z-index: -1;
+        }
+
+        .content {
+        position: relative;
+        z-index: 1;
+        }
+       body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+        }
+        #globe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: absolute;
+            background-color: transparent;
+            z-index: 0;
+        }
+
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 100;
+        }
+
+        #controls button {
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+        }
+
+        #tooltip {
+            position: absolute;
+            display: none;
+            background-color: white;
+            border: 1px solid black;
+            padding: 5px;
+            pointer-events: none; /* Ignore pointer events on tooltip */
+        }
+
+
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent background to make the text more readable */
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: inline-block;
+            font-size: 24px;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .center-nav a {
+            font-size: 32px;
+            text-align: center;
+        }
+        .right-nav {
+            display: flex;
+            align-items: center; 
+        }
+
+        .profile-icon {
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+        transition: transform 0.1s ease-in-out; 
+        }
+
+        .profile-icon:hover {
+        transform: scale(1.2); 
+        cursor: pointer; 
+
+        }
+
+        main {
+            padding: 20px;
+        }
+        /* scroll down */
+        .scroll-down-section {
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-down-icon {
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .scroll-down-icon:hover {
+            transform: scale(1.2);
+        }
+
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 3;
+            background:rgba(255, 255, 255, 0.0);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .blog {
+            margin-bottom: 20px;
+        }
+
+        
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+
+        /* dropdown */
+
+        .dropdown {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #333;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                    width: 100px;
+                    right: 0;
+                    z-index: 1;
+                }
+
+                .dropdown-content a {
+                    color: #fff;
+                    padding: 12px 16px;
+                    font-size: 12px;
+                    text-decoration: none;
+                }
+
+                .dropdown-content a:hover {
+                    background-color: #555;
+                }
+
+                .dropdown:hover .dropdown-content {
+                    display: block;
+                }
+
+                #globeContainer {
+                    width: 500px;
+                    height: 500px;
+                    margin: 0 auto;
+                    margin-top: 120px;
+                }
+
+            </style>
+</head>
+<body>
+
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html">Home</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+                <a href="aboutus.html" class="logo">ZoomIN</a>
+            <div class="nav-right">
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="dropdown">
+                <a href="profile.html" class="profile-button">
+                    <img src="pp.jpeg" alt="Profile Picture" class="header-profile-pic">
+                </a>
+                <div class="dropdown-content">
+                    <a href="#" id="logoutDropdown">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <video autoplay muted loop id="myVideo">
+        <source src="index.mp4" type="video/mp4">       <!-https://www.youtube.com/watch?v=tJVol5pl-fE->
+    </video>
+    
+    <div class="earth">
+    </div>
+
+    <script>
+        // JavaScript functions to handle the modal
+        function openSignInModal() {
+            document.getElementById('signInModal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function closeSignInModal() {
+            document.getElementById('signInModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+
+
+<script>
+    // JavaScript function to handle scroll down
+    function scrollToContent() {
+        const contentSection = document.querySelector('main');
+        contentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+<div id="globe"></div>
+
+<div id="tooltip"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    let scene, camera, renderer, globe;
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let raycaster = new THREE.Raycaster();
+    let mouse = new THREE.Vector2();
+    let clickableObjects = [];
+    let tooltip = document.getElementById('tooltip');
+
+    function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setClearColor(0x000000, 0); // The second parameter is the opacity, 0 for fully transparent
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('globe').appendChild(renderer.domElement);
+
+
+
+
+        const material = new THREE.MeshStandardMaterial(); 
+
+        // Load and apply the texture
+        const textureLoader = new THREE.TextureLoader();
+        textureLoader.load('earthh.jpg',
+            function(texture) {
+                // On Load
+                material.map = texture;
+                material.needsUpdate = true;
+            },
+            undefined, // onProgress callback not needed here
+            function(err) {
+                // On Error
+                console.error('An error occurred loading the texture:', err);
+            }
+        );
+
+        // Create the sphere geometry and globe mesh
+        const geometry = new THREE.SphereGeometry(7, 34, 34); 
+        globe = new THREE.Mesh(geometry, material); 
+
+        // Add the globe to the scene
+        scene.add(globe);
+
+        // Add lighting to the scene
+        const light = new THREE.AmbientLight(0xffffff); 
+        scene.add(light);
+
+        // Set camera position
+        camera.position.z = 15;
+
+        window.addEventListener('resize', onWindowResize, false);
+        document.addEventListener('mousedown', onMouseDown, false);
+        document.addEventListener('mousemove', onMouseMove, false);
+        document.addEventListener('mouseup', onMouseUp, false);
+        document.addEventListener('wheel', onMouseWheel, false);
+        document.addEventListener('click', onMouseClick, false);
+
+        // Create buttons on the globe
+        createButton(42.358990, -71.058632, 'Boston', 'blogpage.html'); 
+        createButton(45.7128, -72.0060, 'Boston', 'blogpage1.html'); 
+        
+        createButton(31.5074, -60, 'Zurich', 'blogpage2.html'); 
+
+        createButton(51.5074, 70, 'Barcelona', 'blogpage3.html'); 
+
+        createButton(61.5074, 50, 'Abu Dhabi', 'blogpage4.html'); 
+
+        createButton(11.5074, 60, 'Paris', 'blogpage5.html'); 
+
+        createButton(49.5074, 10, 'London', 'blogpage6.html'); 
+
+         createButton(88.5074,-30, 'Rome', 'blogpage7.html'); 
+
+         createButton(34, 90, 'Kashmir', 'blogpage8.html'); 
+
+         createButton(37.5074,40, 'Tulum', 'blogpage9.html'); 
+
+
+        animate();
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        checkHover();
+        renderer.render(scene, camera);
+    }
+
+    function onMouseDown(event) {
+        isDragging = true;
+    }
+
+    function onMouseMove(event) {
+        if (isDragging) {
+            const deltaMove = {
+                x: event.offsetX - previousMousePosition.x,
+                y: event.offsetY - previousMousePosition.y
+            };
+
+            const rotateAngleX = (deltaMove.y * Math.PI) / 180;
+            const rotateAngleY = (deltaMove.x * Math.PI) / 180;
+
+            globe.rotation.x += rotateAngleX;
+            globe.rotation.y += rotateAngleY;
+        }
+
+        previousMousePosition = {
+            x: event.offsetX,
+            y: event.offsetY
+        };
+
+        // Update mouse position for raycaster
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    function onMouseUp(event) {
+        isDragging = false;
+    }
+
+    function onMouseWheel(event) {
+        const fov = camera.fov + event.deltaY * 0.05;
+        camera.fov = THREE.MathUtils.clamp(fov, 10, 75);
+        camera.updateProjectionMatrix();
+    }
+
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function createButton(lat, lon, label, link) {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lon + 180) * (Math.PI / 180);
+
+            // Load the pinpoint image texture
+            const buttonTextureLoader = new THREE.TextureLoader();
+            const buttonTexture = buttonTextureLoader.load('button.png'); // Ensure this path is correct
+
+            // Create a plane geometry for the pinpoint
+            const pinpointScale = 0.4; // Adjust the scale as needed
+            const buttonGeometry = new THREE.PlaneGeometry(pinpointScale, pinpointScale);
+            const buttonMaterial = new THREE.MeshBasicMaterial({
+                map: buttonTexture, 
+                transparent: true, 
+                side: THREE.DoubleSide,
+                depthTest: false, // Prevents the texture from being hidden behind the globe
+                depthWrite: false
+            });
+            const button = new THREE.Mesh(buttonGeometry, buttonMaterial);
+
+            // Position the button
+            const radius = 7; // The globe's radius, adjust if your globe's size is different
+            button.position.x = radius * Math.sin(phi) * Math.cos(theta);
+            button.position.y = radius * Math.cos(phi);
+            button.position.z = radius * Math.sin(phi) * Math.sin(theta);
+
+            // Make the pinpoint always face the camera
+            button.quaternion.copy(camera.quaternion);
+
+            button.userData = { label: label, link: link };
+
+            // Add the button to the globe
+            globe.add(button);
+            clickableObjects.push(button);
+        }
+
+
+
+    function onMouseClick(event) {
+        event.preventDefault();
+
+        raycaster.setFromCamera(mouse, camera);
+
+        const intersects = raycaster.intersectObjects(clickableObjects);
+
+        if (intersects.length > 0) {
+            const clickedObject = intersects[0].object;
+
+            // Open the link stored in userData
+            const url = clickedObject.userData.link;
+            if (url) {
+                window.open(url, '_blank'); // Open the link in a new tab/window
+            }
+        }
+    }
+
+    function checkHover() {
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(clickableObjects);
+
+        if (intersects.length > 0) {
+            const intersectedObject = intersects[0].object;
+            const vector = new THREE.Vector3();
+            intersectedObject.getWorldPosition(vector);
+            vector.project(camera);
+
+            vector.x = (vector.x + 1) / 2 * window.innerWidth;
+            vector.y = -(vector.y - 1) / 2 * window.innerHeight;
+
+            if (tooltip.style.display === 'none') {
+                tooltip.style.display = 'block';
+            }
+            tooltip.innerHTML = intersectedObject.userData.label;
+            tooltip.style.left = `${vector.x}px`;
+            tooltip.style.top = `${vector.y - 30}px`; // Adjust as needed
+        } else {
+            tooltip.style.display = 'none';
+        }
+            }
+
+
+    init();
+</script>
+<script>
+    // JavaScript functions to handle the modal and dropdown
+    function openSignInModal() {
+        document.getElementById('signInModal').style.display = 'view';
+        document.getElementById('overlay').style.display = 'close';
+        closeDropdown(); // Close the dropdown when modal is opened
+    }
+    function openSignInModal() {
+            window.location.href = "signin.html";
+        }
+
+    function closeSignInModal() {
+        document.getElementById('signInModal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+    
+    function toggleDropdown() {
+        const dropdown = document.getElementById('profileDropdown');
+        dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function closeDropdown() {
+        document.getElementById('profileDropdown').style.display = 'none';
+    }
+
+    function signOut() {
+        // Add sign-out logic here
+        alert('Signed Out');
+        closeDropdown();
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.profile-icon')) {
+            closeDropdown();
+        }
+    };
+
+    window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+});
+</script>
+
+
+<script src="script.js"></script>
+</body>
+</html>

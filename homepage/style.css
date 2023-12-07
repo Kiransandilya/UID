@@ -1,0 +1,62 @@
+#title {
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+    color: white; /* White text for better visibility on dark background */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #000; /* Cosmic space-like black background */
+    overflow: hidden; /* To ensure no scroll bars appear due to moving stars */
+}
+
+#globe-container {
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+#globe-container, #login-form {
+    width: 300px; /* Adjust width as needed */
+    margin: 20px auto; /* Centers the div */
+    text-align: center;
+}
+
+
+#login-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+#login-form input, #login-form button {
+    display: inline-block; /* Makes the elements stack vertically */
+    margin: 10px auto; /* Center align */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+}
+
+
+/* Moving stars background */
+

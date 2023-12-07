@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZoomIN</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <script src="globe.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.87.1/build/three.min.js"></script>
+    <style>
+        /* Style for the popup background */
+#popup-background {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Style for the popup form */
+#signup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5); /* Set the background to semi-transparent black */
+    color: black; /* Set the text color to black */
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+/* Style for the video */
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Ensure video is behind all other elements */
+}
+
+/* Style for the buttons and input fields */
+#login-form input, #login-form button, #signup-form input, #signup-form button {
+    background: rgba(48, 42, 42, 0.5); /* Set the background to semi-transparent white */
+    color: rgb(255, 253, 253); /* Set the text color to black */
+    font-family: Arial;
+    font-size: 12px;
+}
+
+
+
+
+
+
+
+#aboutus-scroll {
+    position: fixed;
+    bottom: 0;
+    left: 20;
+    width: 40%; /* Adjust width as needed */
+    height: 100%;
+    color: rgba(255, 255, 255, 0.7); /* Semi-transparent white color */
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.aboutus-line {
+    position: relative;
+    top: 85%; /* Start from the bottom of the container */
+    white-space: nowrap;
+    animation: scrollText 30s linear infinite;
+    animation-delay: var(--scroll-delay, 0s);
+}
+
+#aboutus-scroll h1 {
+    font-size: 1.8em; /* Larger size for the title */
+    margin: 0;
+}
+
+.aboutus-line:not(h1) {
+    font-size: 1.2em; /* Smaller size for other lines */
+}
+
+@keyframes scrollText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-200%); }
+}
+
+
+
+
+
+
+
+#logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px; /* Adjust the height as needed */
+    margin-bottom: 20px; /* Spacing between logo and login section */
+}
+
+#logo {
+    max-width: 500px; /* Adjust the size as needed */
+    height: auto;
+}
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Background Video -->
+    <video autoplay muted loop id="background-video">
+        <source src="bg.mp4" type="video/mp4">      <!--ref: https://www.pexels.com/search/videos/shooting%20stars/ -->  
+    </video>
+
+    
+
+    <div id="aboutus-scroll">
+        
+        <div class="aboutus-line">Welcome to ZoomIN</div>
+        <div class="aboutus-line">your ultimate travel companion!</div>
+        <div class="aboutus-line">Our passion is to inspire and guide you on your journey to explore the world.</div>
+        <div class="aboutus-line">Whether you seek adventure, cultural experiences, or relaxation,</div>
+        <div class="aboutus-line">ZoomIN is here to make your travel dreams a reality.</div>
+        <!-- Add some empty lines at the end to create a pause before the text repeats -->
+        <div class="aboutus-line">&nbsp;</div>
+        <div class="aboutus-line">&nbsp;</div>
+        <div class="aboutus-line">&nbsp;</div>
+    </div>
+
+    <div id="logo-container">
+        <img src="Logo.png" alt="Logo" id="logo">
+    </div>
+
+
+    <div id="login-form">
+        <input type="text" id="login-id" placeholder="Enter your login ID">
+        <input type="password" id="password" placeholder="Enter your password" style="display:none;">
+        <button id="login-btn">Login</button>
+    </div>
+    <!-- Sign Up Button -->
+    <div style="text-align: center;">
+            <button id="signup-btn" style="display: inline-block;">Sign Up</button>
+    </div>
+
+    
+
+    <!-- Popup Background -->
+    <div id="popup-background"></div>
+
+    <!-- Sign Up Form (initially hidden) -->
+    <div id="signup-form">
+        <input type="text" id="signup-name" placeholder="Enter your name">
+        <input type="email" id="signup-email" placeholder="Enter your email">
+        <input type="password" id="signup-password" placeholder="Enter your password">
+        <button id="signup-submit">Submit</button>
+    </div>
+
+    <script>
+// Add event listener to Sign Up button
+document.getElementById('signup-btn').addEventListener('click', function() {
+    // Hide the Sign Up button
+    this.style.display = 'none';
+
+    // Show the popup background and the Sign Up form
+    document.getElementById('popup-background').style.display = 'block';
+    document.getElementById('signup-form').style.display = 'block';
+});
+
+// Add event listener to Submit button in the Sign Up form
+document.getElementById('signup-submit').addEventListener('click', function() {
+    // Save signup credentials to localStorage
+    let email = document.getElementById('signup-email').value;
+    let password = document.getElementById('signup-password').value;
+    localStorage.setItem(email, password);
+
+    // Hide the popup background and the Sign Up form
+    document.getElementById('popup-background').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'none';
+
+    // Show the Sign Up button
+    document.getElementById('signup-btn').style.display = 'inline-block';
+});
+
+// Add event listener to Login button
+document.getElementById('login-btn').addEventListener('click', function() {
+// Get login credentials
+let email = document.getElementById('login-id').value;
+
+// Check if the email exists in localStorage
+if (localStorage.getItem(email)) {
+    // Email exists, now show the password field
+    document.getElementById('password').style.display = 'block';
+    document.getElementById('signup-btn').style.display = 'none';
+    this.textContent = 'Enter';
+
+    // Disable the login-id input
+    document.getElementById('login-id').disabled = true;
+
+            // Check if a back button already exists, if not, create it
+            if (!document.getElementById('backButton')) {
+            let backButton = document.createElement('button');
+            backButton.id = 'backButton';
+            backButton.textContent = 'Back';
+            backButton.addEventListener('click', function() {
+                window.location.reload();  // This will reload the page
+            });
+            document.getElementById('login-form').appendChild(backButton);
+        }
+
+    // Add event listener to Enter button
+    this.addEventListener('click', function() {
+        let password = document.getElementById('password').value;
+
+        // Check the password
+        if (localStorage.getItem(email) === password) {
+            // Password is correct, allow the user to login
+            alert('Login successful!');
+            window.location.href = '../homepage/version6/index.html';
+        } else {
+            // Password is incorrect
+            alert('Incorrect password!');
+        }
+    });
+} else {
+    // Email does not exist
+    alert('Email does not exist!');
+}
+});
+
+// Add event listener to Popup Background
+document.getElementById('popup-background').addEventListener('click', function() {
+    // Hide the popup background and the Sign Up form
+    this.style.display = 'none';
+    document.getElementById('signup-form').style.display = 'none';
+
+    // Show the Sign Up button
+    document.getElementById('signup-btn').style.display = 'inline-block';
+});
+
+// Add event listener to Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        // Hide the popup background and the Sign Up form
+        document.getElementById('popup-background').style.display = 'none';
+        document.getElementById('signup-form').style.display = 'none';
+
+        // Show the Sign Up button
+        document.getElementById('signup-btn').style.display = 'inline-block';
+    }
+});
+
+
+    </script>
+</body>
+</html>
